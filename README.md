@@ -37,7 +37,7 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 | App | Steps |
 |---|---|
-| **Claude** (claude.ai + Claude Desktop) | Settings > Connectors > **Add custom connector** > paste `https://mark-it.co/api/mcp` > authorize. Available on all plans (Free allows one custom connector). |
+| **Claude** (claude.ai + Claude Desktop) | Settings > Connectors (under Customize) > **Add custom connector** > paste `https://mark-it.co/api/mcp` > authorize. Available on all plans (Free allows one custom connector). **Known issue:** an [open Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) can fail the authorization right after you approve - if that happens, use **Claude Code** (below) until Anthropic ships the fix. |
 | **ChatGPT** (web) | Settings > **Security and login** > turn on **Developer mode**, then Settings > **Plugins** (or chatgpt.com/plugins) > **+** > paste the server URL > connect with OAuth. |
 | **Claude Code** | `claude mcp add --transport http markit https://mark-it.co/api/mcp` then run `/mcp` in a session and pick **Authenticate**. Add `--scope user` to use it in every project. |
 | **Codex CLI** | Add the server (see [clients/codex.toml](clients/codex.toml), skip the token line) then `codex mcp login markit`. |
@@ -86,6 +86,7 @@ Your AI talks to MarkIt with **your** identity and only ever sees **your** items
 - **Windsurf**: the remote-server field is `serverUrl`, not `url`.
 - **Cline**: set `"type": "streamableHttp"` explicitly.
 - **VS Code says it cannot start the server**: an entry with a `url` also needs `"type": "http"`.
+- **Claude says "Authorization with MarkIt failed" right after you approve**: known [Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) in claude.ai custom connectors (our server completes the whole OAuth flow; Claude drops it after the token). Use Claude Code or Cursor until it's fixed.
 - **Sign-in window never comes back**: finish the login in the browser tab it opened, then retry from the app; some apps need a retry after the first authorize.
 - **`mcp-remote` shim**: keep it current (`mcp-remote@latest`; versions before 0.1.16 have a known critical vulnerability). No space around the colon in `Authorization:${AUTH_HEADER}` on Windows.
 - Still stuck? [support@mark-it.co](mailto:support@mark-it.co).

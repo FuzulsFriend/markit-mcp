@@ -29,6 +29,11 @@ to their memory: find things, read them, save new ones, set reminders.
    Code (`claude mcp add --transport http markit https://mark-it.co/api/mcp`
    then `/mcp` > Authenticate), Codex (`codex mcp login markit`), Zed
    (url-only entry triggers its OAuth prompt).
+   KNOWN ISSUE: the claude.ai / Claude Desktop connector currently has an
+   open Anthropic-side bug (anthropics/claude-ai-mcp #582 cluster) that can
+   fail the authorization right after consent even though the server-side
+   flow succeeds. If it hits, switch the human to Claude Code (OAuth or
+   key) instead of retrying the connector endlessly.
 3. Key path only when OAuth is not available (plain CLIs, scripts, the
    ChatGPT desktop app via ~/.codex/config.toml): tell the human to
    generate the key themselves at https://mark-it.co/settings#integrations
