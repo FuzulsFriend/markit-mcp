@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "markit": {
+      "type": "streamableHttp",
+      "url": "https://mark-it.co/api/mcp",
+      "headers": {
+        "Authorization": "Bearer mkt_your_key_here"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

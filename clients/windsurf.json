@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "markit": {
+      "serverUrl": "https://mark-it.co/api/mcp",
+      "headers": {
+        "Authorization": "Bearer mkt_your_key_here"
+      }
+    }
+  }
+}

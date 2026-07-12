@@ -1,0 +1,9 @@
+# Add to ~/.codex/config.toml
+# Shared by Codex CLI and the ChatGPT desktop app.
+
+[mcp_servers.markit]
+url = "https://mark-it.co/api/mcp"
+
+# Key path: keep this line and run   export MARKIT_MCP_TOKEN=mkt_your_key_here
+# OAuth path: delete this line and run   codex mcp login markit
+bearer_token_env_var = "MARKIT_MCP_TOKEN"

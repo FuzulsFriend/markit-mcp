@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "markit": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mark-it.co/api/mcp",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": {
+        "AUTH_HEADER": "Bearer mkt_your_key_here"
+      }
+    }
+  }
+}

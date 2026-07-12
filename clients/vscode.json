@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "markit-key",
+      "description": "MarkIt API key (mkt_...)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "markit": {
+      "type": "http",
+      "url": "https://mark-it.co/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:markit-key}"
+      }
+    }
+  }
+}
