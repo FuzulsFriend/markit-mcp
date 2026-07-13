@@ -1,6 +1,13 @@
+<p align="center">
+  <img src="assets/banner.png" alt="MarkIt - everything you save, findable again" width="100%" />
+</p>
+
 # MarkIt MCP - connect your AI to your library
 
 **Bring your own AI. MarkIt is the memory.**
+
+> [!TIP]
+> **The lazy path (recommended):** paste this repo's URL into your AI and say **"connect me to MarkIt"**. It reads [llms.txt](llms.txt) and handles everything below for you.
 
 [MarkIt](https://mark-it.co) saves the links, posts, and notes you'd otherwise lose, and makes them searchable in plain language. This repo is the official guide for connecting your own AI - Claude, ChatGPT, Cursor, and friends - to your MarkIt library over the open [Model Context Protocol](https://modelcontextprotocol.io).
 
@@ -11,8 +18,6 @@ Server URL:  https://mark-it.co/api/mcp
 Transport:   Streamable HTTP
 Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 ```
-
-> Lazy path: paste this repo's URL to your AI and say "connect me to MarkIt". It will read [llms.txt](llms.txt) and walk you through the rest.
 
 ---
 
@@ -28,10 +33,8 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 ### One-click installs
 
-| App | Install |
-|---|---|
-| Cursor | [Add to Cursor](https://cursor.com/install-mcp?name=markit&config=eyJ1cmwiOiJodHRwczovL21hcmstaXQuY28vYXBpL21jcCJ9) |
-| VS Code | [Add to VS Code](https://vscode.dev/redirect/mcp/install?name=markit&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmark-it.co%2Fapi%2Fmcp%22%7D) |
+[![Add to Cursor](https://img.shields.io/badge/Add_to-Cursor-1a1a1a?style=for-the-badge)](https://cursor.com/install-mcp?name=markit&config=eyJ1cmwiOiJodHRwczovL21hcmstaXQuY28vYXBpL21jcCJ9)
+[![Add to VS Code](https://img.shields.io/badge/Add_to-VS_Code-0098FF?style=for-the-badge)](https://vscode.dev/redirect/mcp/install?name=markit&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmark-it.co%2Fapi%2Fmcp%22%7D)
 
 ### Everyone else
 
