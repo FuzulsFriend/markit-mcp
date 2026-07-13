@@ -55,9 +55,12 @@ Security rules you must respect during setup and forever after:
 
 ## The six tools and how to use them well
 
-search({query, category?, source?, excludeSource?, type?, author?, tags?,
+search({query?, category?, source?, excludeSource?, type?, author?, tags?,
         pinnedOnly?, likedOnly?, dateFrom?, dateTo?, sort?, limit?})
-  - query is REQUIRED, natural language, English ranks best.
+  - query is OPTIONAL, natural language, English ranks best. OMIT it to get
+    a newest-first date listing - that is the reliable answer to "what did
+    I save last/recently?" (a made-up query can miss items titled in other
+    languages). Filters and limit still apply without a query.
   - Filters are structured: source is a platform key
     (instagram|tiktok|youtube|twitter|github|linkedin|facebook) or a domain
     substring; type is url|image|note|document; dates are ISO (2026-06-01);
