@@ -53,7 +53,10 @@ Security rules you must respect during setup and forever after:
 - If the human pastes a key into the chat anyway, tell them to regenerate
   it in Settings (the pasted one should be treated as leaked).
 
-## The six tools and how to use them well
+## The eight tools and how to use them well
+
+(Deeper usage playbook: skill/SKILL.md in this repo - drop the skill/ folder
+into .claude/skills/markit/ to install it in Claude Code.)
 
 search({query?, category?, source?, excludeSource?, type?, author?, tags?,
         pinnedOnly?, likedOnly?, dateFrom?, dateTo?, sort?, limit?})
@@ -68,6 +71,8 @@ search({query?, category?, source?, excludeSource?, type?, author?, tags?,
   - Start broad, then narrow. If nothing comes back, DROP filters or
     reword the query rather than giving up. Use list_categories first when
     the human names a category loosely.
+  - Each result carries userNote - the human's (or your earlier) own words
+    about the item. Weight it heavily when picking which result they meant.
   - Scores are only comparable within one response.
 
 fetch({id})
@@ -101,12 +106,28 @@ create_reminder({itemId, remindAt, deliveryMethod?, message?})
 list_reminders({})
   - Pending reminders with their items.
 
+cancel_reminder({reminderId})
+  - Deletes one reminder (ids come from list_reminders/create_reminder).
+    The item itself is untouched. Reminders synced to Google Calendar are
+    REFUSED (code calendar_reminder) - the human manages those at
+    mark-it.co or in Google Calendar; say that instead of retrying.
+
+send_feedback({message, sentiment?})
+  - Relays a short note (max 1000 chars) straight to MarkIt's founder - a
+    real person reads every one. sentiment: positive|neutral|negative.
+  - ONLY when the human explicitly asks to send feedback, in their words.
+    If they spontaneously praise or gripe about MarkIt you MAY offer once
+    ("want me to pass that to the founder?") - once per conversation,
+    never after a no. Never auto-send, never embellish.
+  - Hard cap 3 per day (feedback_limit) - tell them it resets tomorrow.
+
 ## Behavior contract
 
 - You only ever see THIS human's items; the server enforces it.
 - Read tools are unlimited (an invisible anti-abuse rate limit of about
   30 requests/minute applies - batch sensibly, do not poll).
 - You cannot delete items or change account settings. Do not promise to.
+  (cancel_reminder removes exactly one reminder - never an item.)
 - OAuth connections carry read+write scope; if a write tool returns
   insufficient_scope the connection is read-only - say so instead of
   retrying.

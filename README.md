@@ -76,6 +76,8 @@ Rules of the key: one per account, treat it like a password, never paste it into
 | `save_item` | Save a URL or a text note into your library. MarkIt scrapes, categorizes, and indexes it. Each save spends one monthly capture; re-saving a URL you already have is a free no-op. |
 | `create_reminder` | Set or reschedule a reminder on an item (email for everyone; WhatsApp/Telegram on Pro). |
 | `list_reminders` | Your pending reminders. |
+| `cancel_reminder` | Cancel one reminder by id. Never touches the item itself; Google-Calendar-synced reminders stay managed on-site. |
+| `send_feedback` | Send a short note straight to MarkIt's founder - only when you ask it to. A real person reads every one. Max 3 a day. |
 
 What it can NOT do, by design: delete items, edit your account, touch anyone else's data. Saved page content is treated as data, never as instructions.
 
@@ -96,7 +98,9 @@ Your AI talks to MarkIt with **your** identity and only ever sees **your** items
 
 ## For your AI
 
-Point your assistant at [llms.txt](llms.txt) - a plain-text playbook that teaches it to connect you and to use the tools well.
+Point your assistant at [llms.txt](llms.txt) - a plain-text playbook that teaches it to connect you and to use the tools well. Same file, branded URL: [mark-it.co/mcp/llms.txt](https://mark-it.co/mcp/llms.txt).
+
+Claude Code users can go one step further: copy the [`skill/`](skill/) folder into `.claude/skills/markit/` and Claude picks up the full MarkIt usage playbook (when to search vs save, note etiquette, reminder handling) automatically.
 
 ## License
 
