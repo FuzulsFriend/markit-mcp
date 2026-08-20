@@ -36,6 +36,8 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 [![Add to Cursor](https://img.shields.io/badge/Add_to-Cursor-1a1a1a?style=for-the-badge)](https://cursor.com/install-mcp?name=markit&config=eyJ1cmwiOiJodHRwczovL21hcmstaXQuY28vYXBpL21jcCJ9)
 [![Add to VS Code](https://img.shields.io/badge/Add_to-VS_Code-0098FF?style=for-the-badge)](https://vscode.dev/redirect/mcp/install?name=markit&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmark-it.co%2Fapi%2Fmcp%22%7D)
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
+
 ### Everyone else
 
 | App | Steps |
