@@ -23,30 +23,23 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 ## Pick your path
 
-**Option 1 - Sign in (OAuth).** No key to handle. Paste the server URL where your app asks for a custom connector or MCP server, and sign in to MarkIt when the browser opens. Best for Claude, ChatGPT web, Cursor, VS Code.
+**Option 1 - Sign in (OAuth).** No key to handle. Works with **Claude, ChatGPT web and Claude Code** only: MarkIt refuses sign-in from any other app, so a look-alike app cannot trick you into signing in.
 
-**Option 2 - API key.** Generate a key in [Settings > Integrations](https://mark-it.co/settings#integrations) (shown once, keep it secret). Best for CLIs, scripts, and the ChatGPT desktop app.
+**Option 2 - API key.** Generate a key in [Settings > Integrations](https://mark-it.co/settings#integrations) (shown once, keep it secret). For every other app: Cursor, VS Code, Codex CLI, Windsurf, Cline, Zed, scripts, and the ChatGPT desktop app.
+
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
 
 ---
 
 ## Option 1 - sign in from your app
 
-### One-click installs
-
-[![Add to Cursor](https://img.shields.io/badge/Add_to-Cursor-1a1a1a?style=for-the-badge)](https://cursor.com/install-mcp?name=markit&config=eyJ1cmwiOiJodHRwczovL21hcmstaXQuY28vYXBpL21jcCJ9)
-[![Add to VS Code](https://img.shields.io/badge/Add_to-VS_Code-0098FF?style=for-the-badge)](https://vscode.dev/redirect/mcp/install?name=markit&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmark-it.co%2Fapi%2Fmcp%22%7D)
-
-[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
-
-### Everyone else
-
 | App | Steps |
 |---|---|
-| **Claude** (claude.ai + Claude Desktop) | Settings > Connectors (under Customize) > **Add custom connector** > paste `https://mark-it.co/api/mcp` > authorize. Available on all plans (Free allows one custom connector). **Known issue:** an [open Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) can fail the authorization right after you approve - if that happens, use **Claude Code** (below) until Anthropic ships the fix. |
-| **ChatGPT** (web) | Settings > **Security and login** > turn on **Developer mode**, then Settings > **Plugins** (or chatgpt.com/plugins) > **+** > paste the server URL > connect with OAuth. |
+| **Claude** (claude.ai + Claude Desktop) | Settings > Connectors (under Customize) > **Add custom connector** > paste `https://mark-it.co/api/mcp` > **Connect** > sign in to MarkIt > **Allow**. Available on all plans (Free allows one custom connector). |
+| **ChatGPT** (web) | [chatgpt.com/plugins](https://chatgpt.com/plugins) > **+** > **Add custom MCP server**. **Icon:** upload the [MarkIt icon](assets/markit-icon-256.png) (optional, keeps the MarkIt logo in your plugin list instead of a puzzle piece). **Name:** `MarkIt`. **Server URL:** `https://mark-it.co/api/mcp`. **Authentication:** OAuth. Tick **I understand and want to continue** > **Create as a plugin** > sign in to MarkIt > **Allow**. |
 | **Claude Code** | `claude mcp add --transport http markit https://mark-it.co/api/mcp` then run `/mcp` in a session and pick **Authenticate**. Add `--scope user` to use it in every project. |
-| **Codex CLI** | Add the server (see [clients/codex.toml](clients/codex.toml), skip the token line) then `codex mcp login markit`. |
-| **Zed** | Add a `context_servers` entry with just the `url` (see [clients/zed.json](clients/zed.json)); Zed prompts you through OAuth when there is no Authorization header. |
+
+Any other app: use Option 2.
 
 ## Option 2 - use your API key
 
@@ -93,7 +86,8 @@ Your AI talks to MarkIt with **your** identity and only ever sees **your** items
 - **Windsurf**: the remote-server field is `serverUrl`, not `url`.
 - **Cline**: set `"type": "streamableHttp"` explicitly.
 - **VS Code says it cannot start the server**: an entry with a `url` also needs `"type": "http"`.
-- **Claude says "Authorization with MarkIt failed" right after you approve**: known [Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) in claude.ai custom connectors (our server completes the whole OAuth flow; Claude drops it after the token). Use Claude Code or Cursor until it's fixed.
+- **Claude says "Authorization with MarkIt failed" right after you approve**: retry once. If it fails again, use Claude Code (Option 1) or any app with an API key (Option 2). An older [Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) caused this; claude.ai sign-in worked again in our test on 2026-10-21.
+- **"This app is not supported. Use an API key instead."**: sign-in is limited to Claude, ChatGPT web and Claude Code. Use an API key (Option 2).
 - **Sign-in window never comes back**: finish the login in the browser tab it opened, then retry from the app; some apps need a retry after the first authorize.
 - **`mcp-remote` shim**: keep it current (`mcp-remote@latest`; versions before 0.1.16 have a known critical vulnerability). No space around the colon in `Authorization:${AUTH_HEADER}` on Windows.
 - Still stuck? [support@mark-it.co](mailto:support@mark-it.co).
