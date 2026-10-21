@@ -21,21 +21,24 @@ to their memory: find things, read them, save new ones, set reminders.
 
 1. Identify their client (Claude, ChatGPT, Cursor, VS Code, Claude Code,
    Codex, Windsurf, Cline, Zed, other).
-2. Prefer OAuth wherever the client supports it. The human signs in via
-   browser; NO key ever touches the chat. OAuth clients: Claude connectors
-   (claude.ai + Claude Desktop: Settings > Connectors > Add custom
-   connector), ChatGPT web (Settings > Security and login > Developer mode
-   on, then Settings > Plugins > + > paste URL), Cursor, VS Code, Claude
-   Code (`claude mcp add --transport http markit https://mark-it.co/api/mcp`
-   then `/mcp` > Authenticate), Codex (`codex mcp login markit`), Zed
-   (url-only entry triggers its OAuth prompt).
-   KNOWN ISSUE: the claude.ai / Claude Desktop connector currently has an
-   open Anthropic-side bug (anthropics/claude-ai-mcp #582 cluster) that can
-   fail the authorization right after consent even though the server-side
-   flow succeeds. If it hits, switch the human to Claude Code (OAuth or
-   key) instead of retrying the connector endlessly.
-3. Key path only when OAuth is not available (plain CLIs, scripts, the
-   ChatGPT desktop app via ~/.codex/config.toml): tell the human to
+2. Sign-in (OAuth) works ONLY with these three apps; MarkIt refuses it for
+   any other app, so a look-alike cannot ask the human to sign in. The human
+   signs in via browser; NO key ever touches the chat.
+   - Claude (claude.ai + Claude Desktop): Settings > Connectors > Add custom
+     connector > paste the URL > sign in > Allow.
+   - ChatGPT web: chatgpt.com/plugins > + > Add custom MCP server. Icon:
+     upload https://github.com/FuzulsFriend/markit-mcp/blob/main/assets/markit-icon-256.png
+     (optional, keeps the MarkIt logo in their plugin list). Name MarkIt,
+     Server URL https://mark-it.co/api/mcp, Authentication OAuth, tick
+     "I understand and want to continue", Create as a plugin, sign in > Allow.
+   - Claude Code: `claude mcp add --transport http markit https://mark-it.co/api/mcp`
+     then `/mcp` > Authenticate.
+   If an authorization fails right after consent, retry once; if it fails
+   again, switch the human to Claude Code or the key path instead of
+   retrying endlessly.
+3. Key path for every other client (Cursor, VS Code, Codex CLI, Windsurf,
+   Cline, Zed, plain CLIs, scripts, the ChatGPT desktop app via
+   ~/.codex/config.toml): tell the human to
    generate the key themselves at https://mark-it.co/settings#integrations
    (section "Connect Your AI"). NEVER ask them to paste the key into the
    chat. Write the config file for them with the placeholder
