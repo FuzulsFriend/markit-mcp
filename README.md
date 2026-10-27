@@ -27,7 +27,7 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 **Option 2 - API key.** Generate a key in [Settings > Integrations](https://mark-it.co/settings#integrations) (shown once, keep it secret). For every other app: Cursor, VS Code, Codex CLI, Windsurf, Cline, Zed, scripts, and the ChatGPT desktop app.
 
-[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp) [![MarkIt on mcprush](https://mcprush.com/badge/markit-mcp/score.svg)](https://mcprush.com/to/markit-mcp?ref=badge)
 
 ---
 
