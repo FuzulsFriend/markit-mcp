@@ -29,6 +29,8 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
 
+[![MarkIt MCP server](https://mcprush.com/badge/markit-mcp/card.svg)](https://mcprush.com/to/markit-mcp?ref=badge)
+
 ---
 
 ## Option 1 - sign in from your app
