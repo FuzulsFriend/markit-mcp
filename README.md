@@ -23,9 +23,9 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 
 ## Pick your path
 
-**Option 1 - Sign in (OAuth).** No key to handle. Works with **Claude, ChatGPT web and Claude Code** only: MarkIt refuses sign-in from any other app, so a look-alike app cannot trick you into signing in.
+**Option 1 - Sign in (OAuth).** No key to handle. Works with **Claude, ChatGPT web, Claude Code and Codex CLI** only: MarkIt refuses sign-in from any other app, so a look-alike app cannot trick you into signing in.
 
-**Option 2 - API key.** Generate a key in [Settings > Integrations](https://mark-it.co/settings#integrations) (shown once, keep it secret). For every other app: Cursor, VS Code, Codex CLI, Windsurf, Cline, Zed, scripts, and the ChatGPT desktop app.
+**Option 2 - API key.** Generate a key in [Settings > Integrations](https://mark-it.co/settings#integrations) (shown once, keep it secret). For every other app: Cursor, VS Code, Windsurf, Cline, Zed, scripts, and the ChatGPT desktop app.
 
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/fuzulsfriend/markit-mcp)
 
@@ -40,6 +40,7 @@ Auth:        OAuth 2.1 (sign in) or a personal API key (mkt_...)
 | **Claude** (claude.ai + Claude Desktop) | Settings > Connectors (under Customize) > **Add custom connector** > paste `https://mark-it.co/api/mcp` > **Connect** > sign in to MarkIt > **Allow**. Available on all plans (Free allows one custom connector). |
 | **ChatGPT** (web) | [chatgpt.com/plugins](https://chatgpt.com/plugins) > **+** > **Add custom MCP server**. **Icon:** upload the [MarkIt icon](assets/markit-icon-256.png) (optional, keeps the MarkIt logo in your plugin list instead of a puzzle piece). **Name:** `MarkIt`. **Server URL:** `https://mark-it.co/api/mcp`. **Authentication:** OAuth. Tick **I understand and want to continue** > **Create as a plugin** > sign in to MarkIt > **Allow**. |
 | **Claude Code** | `claude mcp add --transport http markit https://mark-it.co/api/mcp` then run `/mcp` in a session and pick **Authenticate**. Add `--scope user` to use it in every project. |
+| **Codex CLI** | `codex mcp add markit --url https://mark-it.co/api/mcp` (or put `[mcp_servers.markit]` with `url = "https://mark-it.co/api/mcp"` in `~/.codex/config.toml`), then `codex mcp login markit`. Open the link it prints, click **Allow** on "Connect Codex to MarkIt?", and the terminal confirms. `codex mcp list` should show `markit` as enabled with OAuth. Codex asks you to approve each MarkIt tool call the first time. |
 
 Any other app: use Option 2.
 
@@ -89,7 +90,7 @@ Your AI talks to MarkIt with **your** identity and only ever sees **your** items
 - **Cline**: set `"type": "streamableHttp"` explicitly.
 - **VS Code says it cannot start the server**: an entry with a `url` also needs `"type": "http"`.
 - **Claude says "Authorization with MarkIt failed" right after you approve**: retry once. If it fails again, use Claude Code (Option 1) or any app with an API key (Option 2). An older [Anthropic-side bug](https://github.com/anthropics/claude-ai-mcp/issues/582) caused this; claude.ai sign-in worked again in our test on 2026-10-21.
-- **"This app is not supported. Use an API key instead."**: sign-in is limited to Claude, ChatGPT web and Claude Code. Use an API key (Option 2).
+- **"This app is not supported. Use an API key instead."**: sign-in is limited to Claude, ChatGPT web, Claude Code and Codex CLI. Use an API key (Option 2).
 - **Sign-in window never comes back**: finish the login in the browser tab it opened, then retry from the app; some apps need a retry after the first authorize.
 - **`mcp-remote` shim**: keep it current (`mcp-remote@latest`; versions before 0.1.16 have a known critical vulnerability). No space around the colon in `Authorization:${AUTH_HEADER}` on Windows.
 - Still stuck? [support@mark-it.co](mailto:support@mark-it.co).
