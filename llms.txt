@@ -21,7 +21,7 @@ to their memory: find things, read them, save new ones, set reminders.
 
 1. Identify their client (Claude, ChatGPT, Cursor, VS Code, Claude Code,
    Codex, Windsurf, Cline, Zed, other).
-2. Sign-in (OAuth) works ONLY with these three apps; MarkIt refuses it for
+2. Sign-in (OAuth) works ONLY with these four apps; MarkIt refuses it for
    any other app, so a look-alike cannot ask the human to sign in. The human
    signs in via browser; NO key ever touches the chat.
    - Claude (claude.ai + Claude Desktop): Settings > Connectors > Add custom
@@ -33,10 +33,14 @@ to their memory: find things, read them, save new ones, set reminders.
      "I understand and want to continue", Create as a plugin, sign in > Allow.
    - Claude Code: `claude mcp add --transport http markit https://mark-it.co/api/mcp`
      then `/mcp` > Authenticate.
+   - Codex CLI: `codex mcp add markit --url https://mark-it.co/api/mcp`
+     (or the same url under [mcp_servers.markit] in ~/.codex/config.toml),
+     then `codex mcp login markit`, open the printed link > Allow. Codex asks
+     the human to approve each MarkIt tool call the first time.
    If an authorization fails right after consent, retry once; if it fails
    again, switch the human to Claude Code or the key path instead of
    retrying endlessly.
-3. Key path for every other client (Cursor, VS Code, Codex CLI, Windsurf,
+3. Key path for every other client (Cursor, VS Code, Windsurf,
    Cline, Zed, plain CLIs, scripts, the ChatGPT desktop app via
    ~/.codex/config.toml): tell the human to
    generate the key themselves at https://mark-it.co/settings#integrations
